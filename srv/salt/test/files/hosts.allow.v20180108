@@ -1,0 +1,4 @@
+sshd:10.0.1.*:allow
+sshd:10.0.0.*:allow
+sshd:10.247.0.*:allow
+sshd:218.88.127.87:allow

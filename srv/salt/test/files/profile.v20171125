@@ -1,0 +1,187 @@
+# /etc/profile
+
+# System wide environment and startup programs, for login setup
+# Functions and aliases go in /etc/bashrc
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+pathmunge () {
+    case ":${PATH}:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+    esac
+}
+
+
+if [ -x /usr/bin/id ]; then
+    if [ -z "$EUID" ]; then
+        # ksh workaround
+        EUID=`id -u`
+        UID=`id -ru`
+    fi
+    USER="`id -un`"
+    LOGNAME=$USER
+    MAIL="/var/spool/mail/$USER"
+fi
+
+# Path manipulation
+if [ "$EUID" = "0" ]; then
+    pathmunge /sbin
+    pathmunge /usr/sbin
+    pathmunge /usr/local/sbin
+else
+    pathmunge /usr/local/sbin after
+    pathmunge /usr/sbin after
+    pathmunge /sbin after
+fi
+
+HOSTNAME=`/bin/hostname 2>/dev/null`
+if [ "$HISTCONTROL" = "ignorespace" ] ; then
+    export HISTCONTROL=ignoreboth
+else
+    export HISTCONTROL=ignoredups
+fi
+
+export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
+
+# By default, we want umask to get set. This sets it for login shell
+# Current threshold for system reserved uid/gids is 200
+# You could check uidgid reservation validity in
+# /usr/share/doc/setup-*/uidgid file
+if [ $UID -gt 199 ] && [ "`id -gn`" = "`id -un`" ]; then
+    umask 002
+else
+    umask 022
+fi
+
+for i in /etc/profile.d/*.sh ; do
+    if [ -r "$i" ]; then
+        if [ "${-#*i}" != "$-" ]; then
+            . "$i"
+        else
+            . "$i" >/dev/null 2>&1
+        fi
+    fi
+done
+
+unset i
+unset -f pathmunge
+#for java
+JAVA_HOME=/usr/java/jdk1.6.0_38
+PATH=$PATH:$JAVA_HOME/bin
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME
+export PATH
+export CLASSPATH
+
+TMOUT=3600
+HISTTIMEFORMAT="%Y%m%d-%H%M%S: "
+export HISTTIMEFORMAT
+export HISTORY_FILE='/var/log/.jm/user_op.log'
+#export PROMPT_COMMAND='{ command=$(history 1 | { read x y; echo $y; }); logger -p local1.notice -t bash -i "user=$USER,ppid=$PPID,from=$SSH_CLIENT,pwd=$PWD,command:$command" >> $HISTORY_FILE; }'
+export PROMPT_COMMAND='{ date "+%y-%m-%d %T ##### $(who am i |awk "{print \$1\" \"\$2\" \"\$5}")  #### $(id|awk "{print \$1}") #### $(history 1 | { read x cmd; echo "$cmd"; })"; } >>$HISTORY_FILE'
+
+# alias for global
+alias sudo='sudo '
+# alias rm='rm -i'
+alias grep='grep -i --color'
+alias vi='vim'
+alias l.='ls -d .* --color=tty'
+alias ll='ls -al --color=tty'
+alias ls='ls --color=tty'
+alias wl='ls -al|wc -l'
+alias c='clear'
+alias p='pwd'
+cdl(){ cd "$@" && pwd; ls -al; }
+alias .1="cdl .."
+alias .2="cd ../.."
+alias .3="cd ../../.."
+alias cd..='cdl ..'
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias psg='ps -aux|grep -v grep|grep -i --color'
+alias hg='history|grep'
+alias netp='netstat -tulanp'
+alias lvi="vim -c \"normal '0\""
+alias tf='tail -f'
+alias du1='du -h --max-depth=1'
+alias du2='du -h --max-depth=2'
+# 自动在文件末尾加上 .bak-日期 来备份文件，如 bak nginx.conf
+bak() { cp "$@" "$@.bak"-`date +%y%m%d`; echo "`date +%Y-%m-%d` backed up $PWD/$@"; }
+# 级联创建目录并进入，如 mcd a/b/c
+mcd() { mkdir -p $1 && cd $1 && pwd ; }
+# 查看去掉#注释和空行的配置文件，如 nocomm /etc/squid/squid.conf
+alias nocomm='grep -Ev '\''^(#|$)'\'''
+alias k9='kill -9'
+psid() {
+  [[ ! -n ${1} ]] && return;   # bail if no argument
+  pro="[${1:0:1}]${1:1}";      # process-name –> [p]rocess-name (makes grep better)
+  ps axo pid,user,command | grep -v grep |grep -i --color ${pro};   # show matching processes
+  pids="$(ps axo pid,user,command | grep -v grep | grep -i ${pro} | awk '{print $1}')";   # get pids
+  complete -W "${pids}" k9     # make a completion list for kk
+}
+# 解压所有归档文件工具
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+ else
+    if [ -f $1 ] ; then
+        # NAME=${1%.*}
+        # mkdir $NAME && cd $NAME
+        case $1 in
+          *.tar.bz2)   tar xvjf $1    ;;
+          *.tar.gz)    tar xvzf $1    ;;
+          *.tar.xz)    tar xvJf $1    ;;
+          *.lzma)      unlzma $1      ;;
+          *.bz2)       bunzip2 $1     ;;
+          *.rar)       unrar x -ad $1 ;;
+          *.gz)        gunzip $1      ;;
+          *.tar)       tar xvf $1     ;;
+          *.tbz2)      tar xvjf $1    ;;
+          *.tgz)       tar xvzf $1    ;;
+          *.zip)       unzip $1       ;;
+          *.Z)         uncompress $1  ;;
+          *.7z)        7z x $1        ;;
+          *.xz)        unxz $1        ;;
+          *.exe)       cabextract $1  ;;
+          *)           echo "extract: '$1' - unknown archive method" ;;
+        esac
+    else
+        echo "$1 - file does not exist"
+    fi
+fi
+}
+
+alias rm=trash
+alias rl='ls /.trash'
+alias ur=undelfile
+alias rmcls=cleartrash
+
+[ -d /.trash ] || mkdir /.trash
+
+trash()
+{
+  mv $@ /.trash/
+}
+ 
+undelfile()
+{
+  mv -i /.trash/$@ ./
+}
+
+cleartrash()
+{
+   	echo -n "Are you sure to clear the trash?(y/n):"
+   	read I
+	[ $I == 'y' ] || [ $I == 'Y' ] && /bin/rm -rf /.trash/*
+}

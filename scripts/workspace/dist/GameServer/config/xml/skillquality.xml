@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<T>
+		<type>1</type>
+		<name>低级被动</name>
+		<quality>1,1;2,2;7,3;11,4;15,5;20,6</quality>
+	</T>
+	<T>
+		<type>2</type>
+		<name>主动技能</name>
+		<quality>1,1;2,2;7,3;11,4;15,5;20,6</quality>
+	</T>
+	<T>
+		<type>3</type>
+		<name>高级被动</name>
+		<quality>1,2;3,3;5,4;7,5;10,6;12,7</quality>
+	</T>
+</root>

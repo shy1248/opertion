@@ -1,0 +1,20 @@
+127.0.0.1  localhost  localhost.localdomain  VM_1_17_centos
+10.0.0.15	testbased01
+10.0.1.35	hall01-cc
+10.0.1.48	gate01-cc
+10.0.1.33	login01-cc
+10.0.1.46	gmserver01-cc
+10.0.1.18	gate01-ly
+10.0.1.14	gate02-ly
+10.0.0.12	login01-ly
+10.0.0.2	login02-ly
+10.0.0.28	login03-ly
+10.0.0.4	hall01-ly
+10.0.0.9	play01-ly
+10.0.1.9	play02-ly
+10.0.0.7	playback01-ly
+10.0.1.16	datacenter01-ly
+10.0.0.11	playdb01-ly
+10.0.0.14	logdb01-ly
+10.0.0.16	gmserver01-ly
+10.0.0.8	update01

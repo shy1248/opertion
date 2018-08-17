@@ -1,0 +1,5 @@
+# For database server
+0 2  * * 6 /bin/bash {path_of_script} >/dev/null 2&>1
+
+# For backup server
+0 4 * * 6 /bin/bash {path_of_script} >/dev/null 2>&1

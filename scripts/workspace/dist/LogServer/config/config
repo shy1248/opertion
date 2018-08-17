@@ -1,0 +1,47 @@
+#服务器的IP地址 (如果游戏服务器与日志服务器在一个机子上可以配置127.0.0.1)
+hostName=127.0.0.1
+#RMI端口 :对应游戏服务器logrmiUrl参数
+rmiPort=5409
+#数据库名
+#databaseName=dq_log
+databaseName=GZ2
+#地址
+#url = jdbc:mysql://localhost:3306/dq_log?useUnicode=true&characterEncoding=utf-8
+url = jdbc:mysql://10.248.1.239:3306/gz2_dq_log?useUnicode=true&characterEncoding=utf-8
+#数据库账号
+#username = root
+username = gslog
+#数据库密码
+password = jiemai_123
+#password = Jiemai_123
+#驱动器
+driverClassName = com.mysql.jdbc.Driver
+#初始化连接数
+initialSize=2
+#最大连接数
+maxActive =200
+#最大空闲连接
+maxIdle = 50
+#最小空闲连接
+minIdle=50
+#超时时间
+maxWait =60000
+timeBetweenEvictionRunsMillis = 1728000000
+minEvictableIdleTimeMillis = 1728000000
+#是否强制关闭连接
+removeAbandoned = false
+removeAbandonedTimeout = 180
+#验证查询语句
+validationQuery = select 1
+#空闭时检验
+testWhileIdle = true
+#取时检验
+testOnBorrow = false
+#归还时检验
+testOnReturn=false
+#连接池收回空闲的活动连接时是否打印消息
+logAbandoned = false
+#开启池的prepared statement 池功能
+poolPreparedStatements=true  
+#statement池能够同时分配的打开的statements的最大数量
+#maxPoolPreparedStatementPerConnectionSize=0  

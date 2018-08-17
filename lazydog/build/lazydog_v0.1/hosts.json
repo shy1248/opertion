@@ -1,0 +1,172 @@
+{
+	"servers": [
+		{
+			"name": "hall01-df",
+			"ip": "10.0.1.22",
+			"projects": ["/jmserver/cxcc_hall_001", "/jmserver/jpcc_hall_001", "/jmserver/df_hall_001"],
+			"tcpPorts": ["8601", "9601", "10601"]
+		},
+		{
+			"name": "play01-df",
+			"ip": "10.0.1.34",
+			"projects": ["/jmserver/df_gs_001", "/jmserver/df_gs_002"],
+			"tcpPorts": ["8881", "9881"]
+		},
+		{
+			"name": "play01-cc",
+			"ip": "10.0.0.6",
+			"projects": ["/jmserver/cxcc_gs_001", "/jmserver/cxcc_gs_002", "/jmserver/jpcc_gs_001", "/jmserver/jpcc_gs_002"],
+			"tcpPorts": ["8881", "9881", "10881", "11881"]
+		},
+		{
+			"name": "gate01-df",
+			"ip": "10.0.1.3",
+			"projects": ["/jmserver/df_gw_001"],
+			"tcpPorts": ["8081"]
+		},
+		{
+			"name": "gate02-df",
+			"ip": "10.0.1.25",
+			"projects": ["/jmserver/df_gw_001"],
+			"tcpPorts": ["8081"]
+		},
+		{
+			"name": "gate01-cc",
+			"ip": "10.0.0.32",
+			"projects": ["/jmserver/cxcc_gw_001", "/jmserver/jpcc_gw_001"],
+			"tcpPorts": ["8081", "9081"]
+		},
+		{
+			"name": "login01-df",
+			"ip": "10.0.1.44",
+			"projects": ["/jmserver/df_login_001"],
+			"tcpPorts": ["9002"]
+		},
+		{
+			"name": "login01-cc",
+			"ip": "10.0.0.27",
+			"projects": ["/jmserver/cxcc_login_001", "/jmserver/jpcc_login_001"],
+			"tcpPorts": ["9002", "9032"]
+		},
+		{
+			"name": "playback01-df",
+			"ip": "10.0.1.40",
+			"projects": ["/jmserver/cxcc_playback_001", "/jmserver/df_playback_001", "/jmserver/tdk_playback_001", "/jmserver/jpcc_playback_001"],
+			"tcpPorts": ["9894", "8894", "10894", "11894"]
+		},
+		{
+			"name": "hall01-tdk",
+			"ip": "10.0.1.21",
+			"projects": ["/jmserver/tdk_hall_001"],
+			"tcpPorts": ["8601"]
+		},
+		{
+			"name": "play01-tdk",
+			"ip": "10.0.1.49",
+			"projects": ["/jmserver/tdk_gs_001", "/jmserver/tdk_gs_002"],
+			"tcpPorts": ["8881", "9881"]
+		},
+		{
+			"name": "gate01-tdk",
+			"ip": "10.0.0.3",
+			"projects": ["/jmserver/tdk_gw_001"],
+			"tcpPorts": ["8081"]
+		},
+		{
+			"name": "login01-tdk",
+			"ip": "10.0.0.31",
+			"projects": ["/jmserver/tdk_login_001"],
+			"tcpPorts": ["9002"]
+		},
+		{
+			"name": "hall01-ly",
+			"ip": "10.0.0.4",
+			"projects": ["/liaoyuan_workspace0001_hall"],
+			"tcpPorts": ["11601"]
+		},
+		{
+			"name": "play02-ly",
+			"ip": "10.0.1.9",
+			"projects": ["/data/ly_majong_workspace0001", "/data/ly_majong_workspace0002", "/data/ly_majong_workspace0003"],
+			"tcpPorts": ["8881", "9881", "10881"]
+		},
+		{
+			"name": "playback01-ly",
+			"ip": "10.0.0.7",
+			"projects": ["/workspace0002_liaoyuan_playback"],
+			"tcpPorts": ["10894"]
+		},
+		{
+			"name": "gate01-ly",
+			"ip": "10.0.0.43",
+			"projects": ["/workspace0002"],
+			"tcpPorts": ["9081"]
+		},
+		{
+			"name": "login01-ly",
+			"ip": "10.0.0.12",
+			"projects": ["/LoginServer_liaoyuan"],
+			"tcpPorts": ["9002"]
+		},
+		{
+			"name": "datacenter01-df",
+			"ip": "10.0.1.36",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "playdb01-df",
+			"ip": "10.0.1.8",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "logdb01-df",
+			"ip": "10.0.1.11",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "gmserver01-df",
+			"ip": "10.0.1.42",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "gmserver01-cc",
+			"ip": "10.0.1.7",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "datacenter01-ly",
+			"ip": "10.0.1.16",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "playdb01-ly",
+			"ip": "10.0.0.11",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "logdb01-ly",
+			"ip": "10.0.0.14",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "gmserver01-ly",
+			"ip": "10.0.0.16",
+			"projects": [],
+			"tcpPorts": []
+		},
+		{
+			"name": "gmserver01-tdk",
+			"ip": "10.0.1.23",
+			"projects": [],
+			"tcpPorts": []
+		}
+	]
+}

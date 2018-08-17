@@ -1,0 +1,75 @@
+一，安装rsync（server和client）
+    yum install rsync
+二、服务器配置rsync
+修改配置：
+    # vi /etc/xinetd.d/rsync
+把原来的disable ，YES改成NO
+
+3、配置/etc/rsyncd.conf(需要手动生成)
+# vi /etc/rsyncd.conf
+log file = /usr/local/rsync/var/rsyncd.log  //日志文件
+pid file = /usr/local/rsync/var/rsyncd.pid  //pid文件路径
+lock file = /usr/local/rsync/var/rsyncd.lock //指定lock文件
+secrets file = /usr/local/rsync/etc/rsyncd.pas  //指定用户密码对文件
+motd file = /usr/local/rsync/etc/rsyncd.motd  //指定欢迎消息文件
+read only = no  //是否只读（若从客户端同步到服务器必须设置为NO）
+hosts allow = 192.168.0.0/16,192.168.10.0/24  //允许的IP段
+list = yes  //是否允许列表
+uid = nobody  //rsync以什么用户身份启动
+gid = nobody  //rsync以什么用户组身份启动
+use chroot = no  //
+max connections = 4  //最大连接数
+[bak]  //模块
+path = /bak  //模块目录
+comment = www bak  //描述信息，可以任意填写
+auth users = bak  //认证的用户，服务器必须存在这个系统用户
+（保存退出）
+-----------以下为rsyncd.conf配置文件内容,rsync配置直接拷贝-------
+log file = /var/rsyncd.log
+pid file = /var/rsyncd.pid
+lock file = /var/rsyncd.lock
+secrets file = /etc/rsyncd.pas
+motd file = /etc/rsyncd.motd
+read only = no
+hosts allow = 192.168.0.0/16,192.168.10.0/24
+list = yes
+uid = root
+gid = root
+use chroot = no
+max connections = 30
+[bak]
+path = /home/bak/testSync
+comment = www bak
+auth users = root
+-----------------------------------------------------------
+修改密码配置
+# vi /etc/rsyncd.pas
+输入（用户密码对文件，用“：”隔开）：
+root:abc123,
+修改权限
+# chmod 600 /etc/rsyncd.pas  //权限必须为600，否则会出错
+
+配置欢迎消息
+# vi /etc/rsyncd.motd
+输入
+welcome to rsync 161
+启动rsync服务端（独立启动）
+# /usr/bin/rsync --daemon
+
+三、客户端配置
+配置rsync client
+1、设定密码
+# vi /etc/rsync.pas
+111111
+修改权限
+# cd /etc
+# chown root.root rsync.pas
+# chmod 600 rsync.pas
+ 
+2、client连接SERVER
+  从SERVER端取文件
+# rsync -vzrtopg --progress --delete root@192.168.10.133::bak /home/testSync/ --password-file=/etc/rsync.pas
+ 
+  向SERVER端上传文件
+# rsync -vzrtopg --progress --password-file=/etc/rsync.pas  /home/testSync/ root@192.168.10.133::bak
+

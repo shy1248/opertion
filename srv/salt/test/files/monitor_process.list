@@ -1,0 +1,31 @@
+testbased01:10.0.0.15:/ly_gate_ios_shenhe;/zg_gate_ios_shenhe;/cc_gate_ios_shenhe;/gy_gate_ios_shenhe;/fj_gate_ios_shenhe
+# testbased01:10.0.0.15:/jmserver/test-svn2;/jmserver/test-svn3;/jmserver/test-svn3-1;/ly_gate_ios_shenhe;/zg_gate_ios_shenhe;/cc_gate_ios_shenhe;/gy_gate_ios_shenhe;/fj_gate_ios_shenhe
+# hall01-cc:10.0.1.35:/jmserver/cxcc_hall_001;/jmserver/jpcc_hall_001;/jmserver/df_hall_001;/jmserver/tdk_hall_002;/jmserver/cxcc_gs_001;/jmserver/cxcc_gs_002;/jmserver/jpcc_gs_001;/jmserver/jpcc_gs_002;/jmserver/df_gs_001;/jmserver/df_gs_002;/jmserver/tdk_gs_001;/jmserver/tdk_gs_002
+# gate01-cc:10.0.1.48:/jmserver/cxcc_gw_001;/jmserver/jpcc_gw_001;/jmserver/df_gw_001;/jmserver/tdk_gw_001
+# login01-cc:10.0.1.33:/jmserver/cxcc_login_001;/jmserver/jpcc_login_001;/jmserver/df_login_001;/jmserver/tdk_login_001
+# gate02-ly:10.0.1.14:/jmserver/ly_gw_001
+# login02-ly:10.0.0.2:/data/LoginServer_liaoyuan_gaofang
+login01-ly:10.0.0.12:/LoginServer_liaoyuan;/LoginServer_LYIOS;/LoginServer_ZGIOS;/LoginServer_CCIOS;/LoginServer_GYIOS;/LoginServer_FJIOS
+gate01-ly:10.0.1.18:/data/workspace0003
+hall01-ly:10.0.0.4:/liaoyuan_workspace0001_hall
+play01-ly:10.0.0.9:/ly_majong_workspace0001;/ly_majong_workspace0002
+playback01-ly:10.0.0.7:/workspace0002_liaoyuan_playback
+datacenter01-ly:10.0.1.16:/replay_workspace0001;/ios_shenhe_replay;/ios_shenhe_replay_zg;/ios_shenhe_replay_cc;/ios_shenhe_replay_gy;/ios_shenhe_replay_fj;/ios_shenhe_workspace;/ios_shenhe_workspace_zg;/ios_shenhe_workspace_cc;/ios_shenhe_workspace_gy;/ios_shenhe_workspace_fj
+# datacenter01-ly:10.0.1.16:/replay_workspace0001;/ios_shenhe_replay;/ios_shenhe_replay_zg;/ios_shenhe_replay_cc;/ios_shenhe_replay_gy;/ios_shenhe_replay_fj;/ios_shenhe_workspace;/ios_shenhe_workspace_zg;/ios_shenhe_workspace_cc;/ios_shenhe_workspace_gy;/ios_shenhe_workspace_fj;/jmserver/cxcc_relog_001;/jmserver/jpcc_relog_001;/jmserver/df_relog_001;/jmserver/tdk_relog_001
+datacenter01-zg:10.247.0.12:/jmserver/zg_relog_001;/jmserver/gy_relog_001;/jmserver/fj_relog_001
+hall01-zg:10.247.0.13:/jmserver/zg_hall_001
+play01-zg:10.247.0.4:/jmserver/zg_gs_001;/jmserver/zg_gs_002
+play02-zg:10.247.0.5:/jmserver/zg_gs_001;/jmserver/zg_gs_002
+gate01-zg:10.247.0.7:/jmserver/zg_gw_001
+login01-zg:10.247.0.17:/jmserver/zg_login_001
+playback01-zg:10.247.0.11:/jmserver/zg_playback_001;/jmserver/gy_playback_001;/jmserver/fj_playback_001
+login01-gy:10.247.0.24:/jmserver/gy_login_001
+gmserver01-gy:10.247.0.15:/jmserver/gy_gs_001;/jmserver/gy_gs_002
+play01-gy:10.247.0.37:/jmserver/gy_gs_001;/jmserver/gy_gs_002
+gate01-gy:10.247.0.38:/jmserver/gy_gw_001
+hall01-gy:10.247.0.29:/jmserver/gy_hall_001
+login01-fj:10.247.0.22:/jmserver/fj_login_001;/jmserver/zg_gs_001;/jmserver/zg_gs_002
+play01-fj:10.247.0.36:/jmserver/fj_gs_001;/jmserver/fj_gs_002
+gate01-fj:10.247.0.18:/jmserver/fj_gw_001
+hall01-fj:10.247.0.19:/jmserver/fj_hall_001
+gmserver01-fj:10.247.0.47:/jmserver/bsf_001

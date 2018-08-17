@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<T>
+		<date>2014/12/14</date>
+		<name>每日礼包</name>
+		<dropId>2001</dropId>
+	</T>
+	<T>
+		<date>2014/12/15</date>
+		<name>每日礼包</name>
+		<dropId>2001</dropId>
+	</T>
+</root>

@@ -1,0 +1,22 @@
+#服务器的IP地址 (如果与GM服务器在一个机子上可以配置127.0.0.1)
+hostName=127.0.0.1
+#RMI端口 :对应服务器连接改端口
+#rmiPort=5407
+#RMI数据端口 
+#rmiDataPort=5401
+#TCP端口 :对应网关服gameServerTcpPort参数
+tcpPort=8881
+#httpPort端口 GM需要绑定改端口
+httpPort=8502
+#DB服务器的RMI连接地址:DB服务器的rmiPort参数
+dbrmiUrl=rmi://127.0.0.1:5400/DbServer
+#聊天服务器的RMI连接地址:聊天服务器的rmiPort参数
+chatrmiUrl=rmi://127.0.0.1:5403/ChatServer
+#是否连接日志服务器
+openlog=true
+#日志服务器RMI连接地址:日志服务器的rmiPort参数
+logrmiUrl=rmi://127.0.0.1:5409/LogServer
+#serverId
+serverid=1001
+#GMTCP地址
+gmUrl=192.169.1.206:7080

@@ -1,0 +1,46 @@
+rpm -ivh percona-xtrabackup-22-2.2.13-1.el6.x86_64.rpm
+
+创建最小权限用户，用于备份
+create user 'bkpuser'@'localhost' identified by '123456';
+grant reload,lock tables,replication client,process,super on *.* to 'bkpuser'@'localhost';
+flush privileges;
+
+完整备份：
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=123456 --socket=/tmp/mysql.sock  /tmp
+
+完整备份并打包：
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=123456  --stream=tar /tmp > /tmp/dbbackup201704017.tar
+
+完整备份并打包压缩：
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=123456  --stream=tar /tmp | gzip > /tmp/dbbackup201704017.tar.gz
+
+第一次增量备份:--incremental 指定增量备份目录，--incremental-basedir指定完整备份目录
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=123456 --socket=/tmp/mysql.sock  --incremental /tmp/one --incremental-basedir=/tmp/2017-04-17_11-07-19/
+
+第二次增量备份：--incremental 指定第二次增量备份目录，--incremental-basedir指定第一次增量备份目录
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=123456 --socket=/tmp/mysql.sock  --incremental /tmp/two --incremental-basedir=/tmp/one/2017-04-17_11-11-05/
+
+恢复数据库：
+innobackupex --apply-log --redo-only basedir(完整备份路径)
+innobackupex --apply-log --redo-only basedir --incremental-dir=第一次增量备份路径
+innobackupex --apply-log --redo-only basedir --incremental-dir=第二次增量备份路径
+innobackupex --copy-back --datadir=/mysqldata(mysql数据目录) basedir(完整备份路径)
+
+单表备份:
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=123456 --socket=/tmp/mysql.sock --databases='test3.tab1' /tmp 
+或者下面
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=123456 --socket=/tmp/mysql.sock --include='test3.tab1' /tmp
+
+单表恢复：
+1、创建恢复表表结构
+2、删除表空间
+ALTER TABLE 表名 DISCARD TABLESPACE;
+3、复制表名.ibd文件到要恢复的表文件里
+cp tmp/表名.ibd /mysqldata/test1
+chown -R mysql.mysql /mysqldata/test1/表名.ibd
+4、导入表空间
+ALTER TABLE 表名 IMPORT TABLESPACE;
+
+单库备份(多个库用空格隔开)
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=123456  --socket=/tmp/mysql.sock --databases='test2' /tmp
+

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sch name="updateWestBusinessmen" value="0 */10 * * * ?">每10分钟一次</sch>
+	<sch name="resetWestBusinessmen" value="0 0 0 * * ?">每天0点执行</sch>
+	<sch name="updatePreCharge" value="03 0 0 * * ?">每天0点3秒执行</sch>
+</root>

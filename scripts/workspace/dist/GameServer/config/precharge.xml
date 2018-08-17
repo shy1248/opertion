@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ROOT xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<T>
+		<serverId>6101</serverId>
+		<totalGetDay>15</totalGetDay>
+		<percent1>10000</percent1>
+		<percent2>5000</percent2>
+		<startDay>2016-08-02</startDay>
+		<startTime>09:00:00</startTime>
+		<endDay>2016-08-31</endDay>
+		<endTime>23:59:59</endTime>
+	</T>
+</ROOT>

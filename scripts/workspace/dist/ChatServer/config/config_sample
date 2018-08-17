@@ -1,0 +1,8 @@
+#RMI端口:对应游戏服务器的chatrmiUrl参数
+rmiPort=5403
+#TCP端口:对应网关服务器的chatServerTcpPort参数
+tcpPort=8882
+#聊天最小等级
+chatLvMin=30
+#聊天间隔时间
+chatIntervalTime=3

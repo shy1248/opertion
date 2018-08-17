@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+        <T>
+		<Id>1101</Id>
+		<beginTime>2016-4-30 0:00:01</beginTime>
+		<endTime>2016-4-30 23:59:59</endTime>
+		<rewards>9819,1;1103,2;1060,10;1717,3</rewards>
+		<buttonName>五一登录礼包</buttonName>
+	</T>
+        <T>
+		<Id>1102</Id>
+		<beginTime>2016-5-1 0:00:01</beginTime>
+		<endTime>2016-5-1 23:59:59</endTime>
+		<rewards>9819,1;1103,4;1064,3;1718,2</rewards>
+		<buttonName>五一登录礼包</buttonName>
+	</T>
+        <T>
+		<Id>1103</Id>
+		<beginTime>2016-5-2 0:00:01</beginTime>
+		<endTime>2016-5-2 23:59:59</endTime>
+		<rewards>9819,1;1103,6;1074,1;1720,2</rewards>
+		<buttonName>五一登录礼包</buttonName>
+	</T>
+        <T>
+		<Id>1104</Id>
+		<beginTime>2016-5-18 0:00:01</beginTime>
+		<endTime>2016-5-18 23:59:59</endTime>
+		<rewards>1109,2</rewards>
+		<buttonName>维护补偿礼包</buttonName>
+	</T>
+
+</root>

@@ -1,0 +1,103 @@
+1，发送邮件命令格式
+mail -s [“subject”] [mail_address] > [file]
+如：
+mail -s “backup result” yushuibo1985@163.com > /backup/result
+echo “All backup has done, and no errors!” | mail -s “backup result” yushuibo1985@163.com
+注：使用mailq查看发送队列；
+
+2，mutt发送邮件格式
+
+3，邮箱配置（客户端使用）
+如何没有安装mail需要安装：
+[yu@backup ~]$ yum install -y mail
+修改配置文件/etc/mail.rc:
+set from=nengmeng5002@qq.com
+set smtp=smtp://smtp.529294824.com:587 
+set smtp-auth-user=nengmeng5002@qq.com 
+set smtp-auth-password=xclzcbbhixlmbgcg
+set smtp-auth=login
+set smtp-use-starttls
+set ssl-verify=ignore
+set nss-config-dir=~/certs
+说明：
+from是发送的邮件地址；
+smtp是外部的smtp邮件服务器地址；
+smtp-auth-user是外部的smtp邮件服务器的用户名；
+smtp-auth-password是外部的smtp邮件服务器的认证密码；
+smtp-auth是外部邮件服务器的认证方式；
+
+QQ邮箱SSL配置过程：
+查看QQMail证书：
+
+1，创建certs证书目录
+[yu@backup ~]$ mkdir certs
+[yu@backup ~]$ ls
+certs  dead.letter
+
+2，生成新的证书文件
+[yu@backup ~]$ echo -n | openssl s_client -connect smtp.qq.com:465 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > certs/qq.mail.crt
+depth=2 C = US, O = GeoTrust Inc., CN = GeoTrust Global CA
+verify return:1
+depth=1 C = US, O = GeoTrust Inc., CN = GeoTrust SSL CA - G3
+verify return:1
+depth=0 C = CN, ST = Guangdong, L = Shenzhen, O = Shenzhen Tencent Computer Systems Company Limited, OU = R&D, CN = pop.qq.com
+verify return:1
+DONE
+[yu@backup ~]$ cat certs/qq.mail.crt
+-----BEGIN CERTIFICATE-----
+MIIHrTCCBpWgAwIBAgIQStxVhUEPlKCJNmsoaRVQVjANBgkqhkiG9w0BAQsFADBE
+MQswCQYDVQQGEwJVUzEWMBQGA1UEChMNR2VvVHJ1c3QgSW5jLjEdMBsGA1UEAxMU
+R2VvVHJ1c3QgU1NMIENBIC0gRzMwHhcNMTYwOTA3MDAwMDAwWhcNMTgxMjA3MjM1
+OTU5WjCBkzELMAkGA1UEBhMCQ04xEjAQBgNVBAgMCUd1YW5nZG9uZzERMA8GA1UE
+BwwIU2hlbnpoZW4xOjA4BgNVBAoMMVNoZW56aGVuIFRlbmNlbnQgQ29tcHV0ZXIg
+U3lzdGVtcyBDb21wYW55IExpbWl0ZWQxDDAKBgNVBAsMA1ImRDETMBEGA1UEAwwK
+cG9wLnFxLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALeSY7Vb
+60Cvv7P2O+zhaZnqlz/KFs//DH4It3xmyMPFOPUFopzN1h8n3/4FPqGBtqEEuWBE
+/o7soZT30E8bw30Tl07VOcYm/fPKi1pyro3hNEdLi5Wlta9fKxDAvw0U3clSq39R
+qihYIDAA3QrDuqI54gULa5IZnqM16A9VBULPfIDaXbdgaAIJ5Ak92nC13YcdQYuv
+egL6jOWSKzCRTqeRAg+6dWkfce1+gAOCuCUDgAso2EJ+k9nFe/LAMMGdGbe4KI9H
+CwpDCMo+2k2u4SQtXOmuYke7nNmRnpJeL3qZnGWsqT7l3N0mYCc/+3zcMfAcmyuo
+H90stoWF/G2T2rcCAwEAAaOCBEkwggRFMIIBPwYDVR0RBIIBNjCCATKCEnVwbG9h
+ZC5tYWlsLnFxLmNvbYIUaHdzbXRwLmV4bWFpbC5xcS5jb22CFGh3aW1hcC5leG1h
+aWwucXEuY29tgg5jbG91ZG14LnFxLmNvbYISaW1hcC5leG1haWwucXEuY29tghNo
+d3BvcC5leG1haWwucXEuY29tggtzbXRwLnFxLmNvbYIKbXgzLnFxLmNvbYIRcnR4
+LmV4bWFpbC5xcS5jb22CCmRhdi5xcS5jb22CCm14MS5xcS5jb22CDW14Yml6MS5x
+cS5jb22CCWV4LnFxLmNvbYILaW1hcC5xcS5jb22CEXBvcC5leG1haWwucXEuY29t
+gg1teGJpejIucXEuY29tggpteDIucXEuY29tghJzbXRwLmV4bWFpbC5xcS5jb22C
+CnBvcC5xcS5jb20wCQYDVR0TBAIwADAOBgNVHQ8BAf8EBAMCBaAwKwYDVR0fBCQw
+IjAgoB6gHIYaaHR0cDovL2duLnN5bWNiLmNvbS9nbi5jcmwwgZ0GA1UdIASBlTCB
+kjCBjwYGZ4EMAQICMIGEMD8GCCsGAQUFBwIBFjNodHRwczovL3d3dy5nZW90cnVz
+dC5jb20vcmVzb3VyY2VzL3JlcG9zaXRvcnkvbGVnYWwwQQYIKwYBBQUHAgIwNQwz
+aHR0cHM6Ly93d3cuZ2VvdHJ1c3QuY29tL3Jlc291cmNlcy9yZXBvc2l0b3J5L2xl
+Z2FsMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAfBgNVHSMEGDAWgBTS
+b/eW9IU/cjwwfSPahXibo3xafDBXBggrBgEFBQcBAQRLMEkwHwYIKwYBBQUHMAGG
+E2h0dHA6Ly9nbi5zeW1jZC5jb20wJgYIKwYBBQUHMAKGGmh0dHA6Ly9nbi5zeW1j
+Yi5jb20vZ24uY3J0MIIBfQYKKwYBBAHWeQIEAgSCAW0EggFpAWcAdgDd6x0reg1P
+piCLga2BaHB+Lo6dAdVciI09EcTNtuy+zAAAAVcCsiY3AAAEAwBHMEUCIBZMjuD9
+LRps0VXtC5F0Dn5FXD8gM0iySH7lLJak/k/vAiEAiLxBze2hKotXAjrolqeYpTy2
+LE5B8/mm6HDRnTO5NpwAdQCkuQmQtBhYFIe7E6LMZ3AKPDWYBPkb37jjd80OyA3c
+EAAAAVcCsidpAAAEAwBGMEQCIBFWt7QviHZxdzT4N1eU+97X00f/iiYTKBnqcKAa
+ls/jAiBCer4UAZrSJ64TjbXhbARmSe+rKtoNEh3FbszBe0TSTAB2AGj2mPgfZIK+
+OozuuSgdTPxxUV1nk9RE0QpnrLtPT/vEAAABVwKyJ4sAAAQDAEcwRQIgCJlZbkC8
+uTXLwyyQPLWRMqLlVJ9bbVsEceP35AMq1V0CIQCgcwNrkcte+84dURDiteDnoco5
+NKLuVwk6+eMt0y3GtjANBgkqhkiG9w0BAQsFAAOCAQEAQDICKJnfn2hc/AzAfc1+
+v6PpIyDTLeT8mOd7qsO/PbTD7H38mdT1hk9M7lTqxYG/DcFmsPWhluGxHeVNq6St
+gw360UE241C3KTl+jQtN8BRSMJpmAL636mVuRU3euAJNmI21fuiz/vauWM85qsWj
+E6N91WTqbOijYU2p/HmwMjd7HEfQQUZtxzmJLlkPoFMy0P9fv2Q+01XTtrx4wpGQ
+VttfWsRh0388L56i3oyK3o50ZrT2twQuK59pUEgL1n7GBXIAe8L/YhYeW349UbYT
+jtFwjo+fYreSQaQe+1bKWRO+ZzUschK/QZ877zAZDe1gN0tqB9kqTLp4pAABkQ7s
+1A==
+-----END CERTIFICATE-----
+
+3，安装证书
+[yu@backup ~]$ certutil -A -n "GeoTrust SSL CA" -t "C,," -d certs/ -i certs/QQMAILCERT
+certutil:  unable to open "certs/QQMAILCERT" for reading (-5950, 2).
+[yu@backup ~]$ certutil -A -n "GeoTrust SSL CA" -t "C,," -d certs/ -i certs/qq.mail.crt
+[yu@backup ~]$ certutil -A -n "GeoTrust Global CA" -t "C,," -d certs/ -i certs/qq.mail.crt
+[yu@backup ~]$ certutil -L -d certs/
+
+Certificate Nickname                                         Trust Attributes
+                                                             SSL,S/MIME,JAR/XPI
+
+GeoTrust SSL CA                                              C,, 
+
